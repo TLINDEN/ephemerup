@@ -2,8 +2,11 @@
 [![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://codeberg.org/scip/ephemerup/raw/branch/main/LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/codeberg.org/scip/ephemerup)](https://goreportcard.com/report/codeberg.org/scip/ephemerup)
 
-# ephemerup
-Simple standalone file upload server with expiration and commandline client.
+# ephemerup - Simple standalone file upload server with expiration and commandline client.
+
+> [!CAUTION]
+> This app is now being maintained on [Codeberg](https://codeberg.org/scip/ephemerup/).
+
 
 ## Introduction
 
