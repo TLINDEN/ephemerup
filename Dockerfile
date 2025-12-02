@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1 -*-python-*-
-FROM golang:1.20-alpine as builder
+FROM golang:1.24-alpine as builder
 
 RUN apk update
 RUN apk upgrade
@@ -14,7 +14,7 @@ COPY . .
 RUN go mod download
 RUN make && strip ephemerupd
 
-FROM alpine:3.17
+FROM alpine:3.22
 LABEL maintainer="Uploads Author <info@daemon.de>"
 
 RUN install -o 1001 -g 1001 -d /data
