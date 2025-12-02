@@ -20,18 +20,20 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+
 	//"github.com/alecthomas/repr"
-	"github.com/imroc/req/v3"
-	"github.com/jarcoal/httpmock"
-	"github.com/schollz/progressbar/v3"
-	"github.com/tlinden/ephemerup/common"
-	"github.com/tlinden/ephemerup/upctl/cfg"
 	"io"
 	"mime"
 	"os"
 	"path/filepath"
 	"regexp"
 	"time"
+
+	"codeberg.org/scip/ephemerup/common"
+	"codeberg.org/scip/ephemerup/upctl/cfg"
+	"github.com/imroc/req/v3"
+	"github.com/jarcoal/httpmock"
+	"github.com/schollz/progressbar/v3"
 )
 
 type Response struct {
@@ -53,7 +55,7 @@ type ListParams struct {
 const Maxwidth = 12
 
 /*
-   Create a new request object for outgoing queries
+Create a new request object for outgoing queries
 */
 func Setup(c *cfg.Config, path string) *Request {
 	client := req.C()
@@ -93,8 +95,8 @@ func Setup(c *cfg.Config, path string) *Request {
 }
 
 /*
-   Iterate over args, considering the  elements are filenames, and add
-   them to the request.
+Iterate over args, considering the  elements are filenames, and add
+them to the request.
 */
 func GatherFiles(rq *Request, args []string) error {
 	for _, file := range args {
@@ -128,8 +130,8 @@ func GatherFiles(rq *Request, args []string) error {
 }
 
 /*
-   Check  HTTP  Response Code  and  validate  JSON status  output,  if
-   any. Turns'em into a regular error
+Check  HTTP  Response Code  and  validate  JSON status  output,  if
+any. Turns'em into a regular error
 */
 func HandleResponse(c *cfg.Config, resp *req.Response) error {
 	// we expect a json response, extract the error, if any
@@ -348,7 +350,7 @@ func Download(w io.Writer, c *cfg.Config, args []string) error {
 
 	if err := os.Rename(id, cleanfilename); err != nil {
 		os.Remove(id)
-		return fmt.Errorf("\nUnable to rename file: " + err.Error())
+		return fmt.Errorf("\nUnable to rename file: %s", err.Error())
 	}
 
 	fmt.Fprintf(w, "%s successfully downloaded to file %s.", id, cleanfilename)

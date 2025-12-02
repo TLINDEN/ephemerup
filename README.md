@@ -1,6 +1,6 @@
-[![Actions](https://github.com/tlinden/ephemerup/actions/workflows/ci.yaml/badge.svg)](https://github.com/tlinden/ephemerup/actions)
-[![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://github.com/tlinden/ephemerup/blob/master/LICENSE)
-[![Go Report Card](https://goreportcard.com/badge/github.com/tlinden/ephemerup)](https://goreportcard.com/report/github.com/tlinden/ephemerup)
+[![status-badge](https://ci.codeberg.org/api/badges/15653/status.svg)](https://ci.codeberg.org/repos/15653)
+[![License](https://img.shields.io/badge/license-GPL-blue.svg)](https://codeberg.org/scip/ephemerup/raw/branch/main/LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/codeberg.org/scip/ephemerup)](https://goreportcard.com/report/codeberg.org/scip/ephemerup)
 
 # ephemerup
 Simple standalone file upload server with expiration and commandline client.
@@ -82,7 +82,7 @@ Then use the client to test it.
 
 ### Install from binary package
 
-Go  to  the  [Releases](https://github.com/TLINDEN/ephemerup/releases)
+Go  to  the  [Releases](https://codeberg.org/scip/ephemerup/releases)
 page and download the latest tarball  for your platform. Unpack it and
 execute `make install` inside the created directory.
 
@@ -99,7 +99,7 @@ helm repo update
 helm upgrade --install ephemerup tlinden/ephemerup --namespace ephemerup --create-namespace
 ```
 
-Refer to the [chart documentation](https://github.com/TLINDEN/ephemerup/tree/main/charts/ephemerup) for help.
+Refer to the [chart documentation](https://codeberg.org/scip/ephemerup/tree/main/charts/ephemerup) for help.
 
 For starters, create a minimal `values.yaml` like this one:
 ```yaml

@@ -11,8 +11,8 @@ package api
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/tlinden/ephemerup/cfg"
-	"github.com/tlinden/ephemerup/common"
+	"codeberg.org/scip/ephemerup/cfg"
+	"codeberg.org/scip/ephemerup/common"
 )
 
 func Status(c *fiber.Ctx, cfg *cfg.Config) error {

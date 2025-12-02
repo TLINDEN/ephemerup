@@ -22,8 +22,8 @@ import (
 	"errors"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/keyauth/v2"
-	"github.com/tlinden/ephemerup/cfg"
-	"github.com/tlinden/ephemerup/common"
+	"codeberg.org/scip/ephemerup/cfg"
+	"codeberg.org/scip/ephemerup/common"
 )
 
 // these vars can be savely global, since they don't change ever

@@ -18,10 +18,11 @@ package api
 
 import (
 	"fmt"
-	"github.com/gofiber/fiber/v2"
-	"github.com/tlinden/ephemerup/cfg"
-	"github.com/tlinden/ephemerup/common"
 	"time"
+
+	"codeberg.org/scip/ephemerup/cfg"
+	"codeberg.org/scip/ephemerup/common"
+	"github.com/gofiber/fiber/v2"
 )
 
 const ApiVersion string = "/v1"
@@ -47,17 +48,17 @@ func Ts() string {
 }
 
 /*
-   Retrieve the  API Context  name from the  session, assuming  is has
-   been  successfully  authenticated. However,  if  there  are no  api
-   contexts     defined,    we'll     use     'default'    (set     in
-   auth.validateAPIKey()).
+Retrieve the  API Context  name from the  session, assuming  is has
+been  successfully  authenticated. However,  if  there  are no  api
+contexts     defined,    we'll     use     'default'    (set     in
+auth.validateAPIKey()).
 
-   If there's no apicontext in the session, assume unauth user, return ""
+If there's no apicontext in the session, assume unauth user, return ""
 */
 func SessionGetApicontext(c *fiber.Ctx) (string, error) {
 	sess, err := Sessionstore.Get(c)
 	if err != nil {
-		return "", fmt.Errorf("Unable to initialize session store from context: " + err.Error())
+		return "", fmt.Errorf("Unable to initialize session store from context: %s", err.Error())
 	}
 
 	apicontext := sess.Get("apicontext")
@@ -69,14 +70,14 @@ func SessionGetApicontext(c *fiber.Ctx) (string, error) {
 }
 
 /*
-   Retrieve the formid  (aka onetime api key) from the  session. It is
-   configured if an upload request has been successfully authenticated
-   using a onetime key.
+Retrieve the formid  (aka onetime api key) from the  session. It is
+configured if an upload request has been successfully authenticated
+using a onetime key.
 */
 func SessionGetFormId(c *fiber.Ctx) (string, error) {
 	sess, err := Sessionstore.Get(c)
 	if err != nil {
-		return "", fmt.Errorf("Unable to initialize session store from context: " + err.Error())
+		return "", fmt.Errorf("Unable to initialize session store from context: %s", err.Error())
 	}
 
 	formid := sess.Get("formid")
@@ -88,12 +89,13 @@ func SessionGetFormId(c *fiber.Ctx) (string, error) {
 }
 
 /*
-   Calculate   if  time   is   up  based   on   start  time.Time   and
-   duration. Returns  true if time  is expired. Start time  comes from
-   the database.
+	Calculate   if  time   is   up  based   on   start  time.Time   and
+	duration. Returns  true if time  is expired. Start time  comes from
+	the database.
 
 aka:
-   if(now - start) >= duration { time is up}
+
+	if(now - start) >= duration { time is up}
 */
 func IsExpired(conf *cfg.Config, start time.Time, duration string) bool {
 	var expiretime int // seconds

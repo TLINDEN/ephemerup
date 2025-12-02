@@ -20,14 +20,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	//"github.com/alecthomas/repr"
-	"github.com/imroc/req/v3"
-	"github.com/olekukonko/tablewriter"
-	"github.com/tlinden/ephemerup/common"
+
 	"io"
 	"sort"
 	"strings"
 	"time"
+
+	"codeberg.org/scip/ephemerup/common"
+	req "github.com/imroc/req/v3"
+	"github.com/olekukonko/tablewriter"
 )
 
 // make a human readable version of the expire setting
@@ -66,11 +67,12 @@ func WriteTable(w io.Writer, headers []string, data [][]string) {
 	fmt.Fprintln(w, tableString.String())
 }
 
-/* Print output like psql \x
+/*
+Print output like psql \x
 
-   Prints  all  Uploads  and  Forms which  exist  in  common.Response,
-   however, we expect only one kind  of them to be actually filled, so
-   the function can be used for forms and uploads.
+	Prints  all  Uploads  and  Forms which  exist  in  common.Response,
+	however, we expect only one kind  of them to be actually filled, so
+	the function can be used for forms and uploads.
 */
 func WriteExtended(w io.Writer, response *common.Response) {
 	format := fmt.Sprintf("%%%ds: %%s\n", Maxwidth)

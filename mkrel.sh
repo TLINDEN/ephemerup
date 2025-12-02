@@ -45,11 +45,11 @@ for D in $DIST; do
     set -x
 
     GOOS=${os} GOARCH=${arch} CGO_LDFLAGS='-static' go build -tags osusergo,netgo -ldflags \
-        "-extldflags=-static -s -X 'github.com/tlinden/ephemerup/cfg.VERSION=${version}'" -o ${binfile}
-    #GOOS=${os} GOARCH=${arch} go build -o ${binfile} -ldflags "-X 'github.com/tlinden/ephemerup/cfg.VERSION=${version}'"
+        "-extldflags=-static -s -X 'codeberg.org/scip/ephemerup/cfg.VERSION=${version}'" -o ${binfile}
+    #GOOS=${os} GOARCH=${arch} go build -o ${binfile} -ldflags "-X 'codeberg.org/scip/ephemerup/cfg.VERSION=${version}'"
     cd $client
     GOOS=${os} GOARCH=${arch} go build -o ../${clientfile} -ldflags \
-        "-X 'github.com/tlinden/ephemerup/upctl/cfg.VERSION=${version}'"
+        "-X 'codeberg.org/scip/ephemerup/upctl/cfg.VERSION=${version}'"
     cd -
     
     mkdir -p ${tardir}

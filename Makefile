@@ -45,8 +45,8 @@ buildlocalctl:
 	make -C upctl
 
 buildlocal:
-#	go build -ldflags "-X 'github.com/tlinden/ephemerup/cfg.VERSION=$(VERSION)'" -o $(DAEMON)
-	CGO_LDFLAGS='-static' go build -tags osusergo,netgo -ldflags "-extldflags=-static -s -X 'github.com/tlinden/ephemerup/cfg.VERSION=$(VERSION)'" -o $(DAEMON)
+#	go build -ldflags "-X 'codeberg.org/scip/ephemerup/cfg.VERSION=$(VERSION)'" -o $(DAEMON)
+	CGO_LDFLAGS='-static' go build -tags osusergo,netgo -ldflags "-extldflags=-static -s -X 'codeberg.org/scip/ephemerup/cfg.VERSION=$(VERSION)'" -o $(DAEMON)
 
 buildimage: clean
 	docker-compose --verbose build
@@ -77,7 +77,7 @@ test:
 
 singletest:
 	@echo "Call like this: ''make singletest TEST=TestX1 MOD=lib"
-	go test -run $(TEST) github.com/tlinden/ephemerup/$(MOD)
+	go test -run $(TEST) codeberg.org/scip/ephemerup/$(MOD)
 
 cover-report:
 	go test ./... -cover -coverprofile=coverage.out

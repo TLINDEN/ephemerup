@@ -19,9 +19,9 @@ package cmd
 import (
 	"errors"
 	"github.com/spf13/cobra"
-	"github.com/tlinden/ephemerup/common"
-	"github.com/tlinden/ephemerup/upctl/cfg"
-	"github.com/tlinden/ephemerup/upctl/lib"
+	"codeberg.org/scip/ephemerup/common"
+	"codeberg.org/scip/ephemerup/upctl/cfg"
+	"codeberg.org/scip/ephemerup/upctl/lib"
 	"os"
 )
 

@@ -18,7 +18,7 @@ package api
 
 import (
 	"fmt"
-	"github.com/tlinden/ephemerup/cfg"
+	"codeberg.org/scip/ephemerup/cfg"
 	"net/smtp"
 )
 

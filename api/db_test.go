@@ -18,12 +18,13 @@ package api
 
 import (
 	//"github.com/alecthomas/repr"
-	"github.com/maxatome/go-testdeep/td"
-	"github.com/tlinden/ephemerup/cfg"
-	"github.com/tlinden/ephemerup/common"
 	"os"
 	"testing"
 	"time"
+
+	"codeberg.org/scip/ephemerup/cfg"
+	"codeberg.org/scip/ephemerup/common"
+	"github.com/maxatome/go-testdeep/td"
 )
 
 func finalize(db *Db) {
@@ -51,11 +52,11 @@ func TestNew(t *testing.T) {
 			db, err := NewDb(c)
 			defer finalize(db)
 			if err != nil && !tt.wantfail {
-				t.Errorf("expected: &Db{}, got err: " + err.Error())
+				t.Error("expected: &Db{}, got err: " + err.Error())
 			}
 
 			if err == nil && tt.wantfail {
-				t.Errorf("expected: fail, got &Db{}")
+				t.Error("expected: fail, got &Db{}")
 			}
 		})
 	}
@@ -94,8 +95,8 @@ var dbtests = []struct {
 }
 
 /*
-   We  need to  test the  whole Db  operation in  one run,  because it
-   doesn't work well if using a global Db.
+We  need to  test the  whole Db  operation in  one run,  because it
+doesn't work well if using a global Db.
 */
 func TestDboperation(t *testing.T) {
 	for _, tt := range dbtests {
@@ -106,14 +107,14 @@ func TestDboperation(t *testing.T) {
 			defer finalize(db)
 
 			if err != nil {
-				t.Errorf("Could not open new DB: " + err.Error())
+				t.Error("Could not open new DB: " + err.Error())
 			}
 
 			if tt.upload.Id != "" {
 				// set ts
 				ts, err := time.Parse(timeformat, tt.ts)
 				if err != nil {
-					t.Errorf("Could not parse time: " + err.Error())
+					t.Error("Could not parse time: " + err.Error())
 				}
 
 				tt.upload.Created = common.Timestamp{Time: ts}
@@ -121,18 +122,18 @@ func TestDboperation(t *testing.T) {
 				// create new upload db object
 				err = db.Insert(tt.id, tt.upload)
 				if err != nil {
-					t.Errorf("Could not insert new upload object: " + err.Error())
+					t.Error("Could not insert new upload object: " + err.Error())
 				}
 
 				// fetch it
 				response, err := db.Get(tt.context, tt.id, common.TypeUpload)
 				if err != nil {
-					t.Errorf("Could not fetch upload object: " + err.Error())
+					t.Error("Could not fetch upload object: " + err.Error())
 				}
 
 				// is it there?
 				if len(response.Uploads) != 1 {
-					t.Errorf("db.Get() did not return an upload obj")
+					t.Error("db.Get() did not return an upload obj")
 				}
 
 				// compare times
@@ -151,24 +152,24 @@ func TestDboperation(t *testing.T) {
 				// fetch list
 				response, err = db.List(tt.context, tt.filter, tt.query, common.TypeUpload)
 				if err != nil {
-					t.Errorf("Could not fetch uploads list: " + err.Error())
+					t.Error("Could not fetch uploads list: " + err.Error())
 				}
 
 				// is it there?
 				if len(response.Uploads) != 1 {
-					t.Errorf("db.List() did not return upload obj[s]")
+					t.Error("db.List() did not return upload obj[s]")
 				}
 
 				// delete
 				err = db.Delete(tt.context, tt.id)
 				if err != nil {
-					t.Errorf("Could not delete upload obj: " + err.Error())
+					t.Error("Could not delete upload obj: " + err.Error())
 				}
 
 				// fetch again, shall return empty
 				_, err = db.Get(tt.context, tt.id, common.TypeUpload)
 				if err == nil {
-					t.Errorf("Could fetch upload object again although we deleted it")
+					t.Error("Could fetch upload object again although we deleted it")
 				}
 			}
 
@@ -176,25 +177,25 @@ func TestDboperation(t *testing.T) {
 				// set ts
 				ts, err := time.Parse(timeformat, tt.ts)
 				if err != nil {
-					t.Errorf("Could not parse time: " + err.Error())
+					t.Error("Could not parse time: " + err.Error())
 				}
 				tt.form.Created = common.Timestamp{Time: ts}
 
 				// create new form db object
 				err = db.Insert(tt.id, tt.form)
 				if err != nil {
-					t.Errorf("Could not insert new form object: " + err.Error())
+					t.Error("Could not insert new form object: " + err.Error())
 				}
 
 				// fetch it
 				response, err := db.Get(tt.context, tt.id, common.TypeForm)
 				if err != nil {
-					t.Errorf("Could not fetch form object: " + err.Error())
+					t.Error("Could not fetch form object: " + err.Error())
 				}
 
 				// is it there?
 				if len(response.Forms) != 1 {
-					t.Errorf("db.Get() did not return an form obj")
+					t.Error("db.Get() did not return an form obj")
 				}
 
 				// compare times
@@ -213,24 +214,24 @@ func TestDboperation(t *testing.T) {
 				// fetch list
 				response, err = db.List(tt.context, tt.filter, tt.query, common.TypeForm)
 				if err != nil {
-					t.Errorf("Could not fetch forms list: " + err.Error())
+					t.Error("Could not fetch forms list: " + err.Error())
 				}
 
 				// is it there?
 				if len(response.Forms) != 1 {
-					t.Errorf("db.FormsList() did not return form obj[s]")
+					t.Error("db.FormsList() did not return form obj[s]")
 				}
 
 				// delete
 				err = db.Delete(tt.context, tt.id)
 				if err != nil {
-					t.Errorf("Could not delete form obj: " + err.Error())
+					t.Error("Could not delete form obj: " + err.Error())
 				}
 
 				// fetch again, shall return empty
 				_, err = db.Get(tt.context, tt.id, common.TypeForm)
 				if err == nil {
-					t.Errorf("Could fetch form object again although we deleted it")
+					t.Error("Could fetch form object again although we deleted it")
 				}
 			}
 		})

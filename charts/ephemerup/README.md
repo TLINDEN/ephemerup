@@ -6,7 +6,7 @@ A Helm chart for Ephemerup.
 
 ## Source Code
 
-* <https://github.com/tlinden/ephemerup>
+* <https://codeberg.org/scip/ephemerup>
 
 ## Requirements
 

@@ -38,7 +38,7 @@ ifdef HAVE_LINT
 endif
 
 buildlocal:
-	go build -ldflags "-X 'github.com/tlinden/ephemerup/upctl/cfg.VERSION=$(VERSION)'"
+	go build -ldflags "-X 'codeberg.org/scip/ephemerup/upctl/cfg.VERSION=$(VERSION)'"
 
 release:
 	./mkrel.sh $(tool) $(version)
@@ -56,7 +56,7 @@ test:
 
 singletest:
 	@echo "Call like this: ''make singletest TEST=TestX1 MOD=lib"
-	go test -run $(TEST) github.com/tlinden/upctl/$(MOD)
+	go test -run $(TEST) codeberg.org/scip/upctl/$(MOD)
 
 cover-report:
 	go test ./... -cover -coverprofile=coverage.out

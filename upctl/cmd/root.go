@@ -22,7 +22,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"github.com/tlinden/ephemerup/upctl/cfg"
+	"codeberg.org/scip/ephemerup/upctl/cfg"
 	"os"
 	"strings"
 )

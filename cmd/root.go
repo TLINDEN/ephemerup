@@ -29,8 +29,8 @@ import (
 	flag "github.com/spf13/pflag"
 
 	"github.com/alecthomas/repr"
-	"github.com/tlinden/ephemerup/api"
-	"github.com/tlinden/ephemerup/cfg"
+	"codeberg.org/scip/ephemerup/api"
+	"codeberg.org/scip/ephemerup/cfg"
 
 	"io/ioutil"
 	"os"

@@ -6,7 +6,7 @@ description: |
 type: application
 
 sources:
-  - https://github.com/tlinden/ephemerup
+  - https://codeberg.org/scip/ephemerup
 
 version: 1.0.0
 

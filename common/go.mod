@@ -1,3 +1,3 @@
-module github.com/tlinden/ephemerup/common
+module codeberg.org/scip/ephemerup/common
 
 go 1.18

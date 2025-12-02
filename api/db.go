@@ -18,8 +18,8 @@ package api
 
 import (
 	"fmt"
-	"github.com/tlinden/ephemerup/cfg"
-	"github.com/tlinden/ephemerup/common"
+	"codeberg.org/scip/ephemerup/cfg"
+	"codeberg.org/scip/ephemerup/common"
 	//"github.com/alecthomas/repr"
 	bolt "go.etcd.io/bbolt"
 	"regexp"

@@ -17,13 +17,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 package main
 
 import (
-	"github.com/tlinden/ephemerup/cmd"
 	"log"
+
+	"codeberg.org/scip/ephemerup/cmd"
 )
 
 func main() {
 	err := cmd.Execute()
 	if err != nil {
-		log.Fatalf(err.Error())
+		log.Fatal(err.Error())
 	}
 }
